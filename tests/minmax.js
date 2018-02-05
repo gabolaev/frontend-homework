@@ -15,6 +15,7 @@ QUnit.module('Тестируем функцию minmax', function () {
 		assert.deepEqual(minmax('.0'), [.0, .0]);
 		assert.deepEqual(minmax('1.1'), [1.1, 1.1]);
 		assert.deepEqual(minmax('.01'), [.01, .01]);
+		assert.deepEqual(minmax('.1.1'), [undefined, undefined]);
 		assert.deepEqual(minmax('1.01'), [1.01, 1.01]);
 		assert.deepEqual(minmax('1e5'), [1e5, 1e5]);
 		assert.deepEqual(minmax('-1e-5'), [-1e-5, -1e-5]);
