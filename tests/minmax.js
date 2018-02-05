@@ -31,5 +31,13 @@ QUnit.module('Тестируем функцию minmax', function () {
 
 	QUnit.test('minmax игнорирует обычный текст', function (assert) {
 		assert.deepEqual(minmax('1, -5.8 или 10, хотя 34 + -5.3 и 73'), [-5.8, 73]);
+		assert.deepEqual(minmax('0 and 0 or maybe -infinity то, что человек написал это с маленькой буквы - это его проблема 1, -5.8 или 10, хотя 34 + -5.3 и 73 АУЕ -Infinity'), [-Infinity, 73]);
+	});
+
+	QUnit.test('minmax игнорирует всякий бред (во всяком случае пытается)', function (assert) {
+		assert.deepEqual(minmax('-....'), [undefined, undefined]);
+		assert.deepEqual(minmax('12+ = - - =- 1=2-3= 1-2 s1=2-s l_SL =1-2ls+ Q@_sl3 a sd 0 9k12 l mk'), [0, 0]);
+		assert.deepEqual(minmax('@@ !@#(*& W &E@7 @& *A&SD A*& ^AS*D& ^@*& 6ASD* (&AS *AS( s s)))))))'), [undefined, undefined]);
+		assert.deepEqual(minmax('^!uD r 10 >hbN f^073 <( m *<1oN _x uP@ 7 L#'), [7, 10]);
 	});
 });
